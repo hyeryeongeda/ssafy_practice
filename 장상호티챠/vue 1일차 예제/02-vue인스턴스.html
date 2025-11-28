@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+ 
+  <!-- div#app>h1*2 -->
+  <div id="app">
+    <h1>{{message}}</h1>
+    
+    <!-- .split('') : string(문자열)을 배열로 분리
+    .reverse() : 순서 뒤집기
+    .join('') : 배열을 다시 문자열로 결합 -->
+
+    <h1>{{message.split('').reverse().join('')}}</h1>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    // 1. 구조분해할당
+    const {createApp, ref} = Vue
+
+    // 2. createApp함수
+    const app = createApp({
+      setup() {
+        const message = ref('Hello vue!!')
+        return {
+          message
+        }
+      }
+    })
+
+    // 3. mount
+    app.mount('#app')
+
+  </script>
+
+</body>
+
+</html>

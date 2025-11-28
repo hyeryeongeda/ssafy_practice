@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>05-양방향 바인딩</title>
+</head>
+<body>
+   <div id="app">
+
+       <p>{{ inputText1 }}</p>
+
+       <!-- 방법 1: v-bind와 v-on을 사용 -->
+        <input :value="inputText1" @input ="onInput" >
+
+
+       <p>{{ inputText2 }}</p>
+
+       <!-- 방법 2: v-model을 사용 -->
+
+
+
+   </div>
+
+   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+   <script>
+       const { createApp, ref } = Vue
+
+       const app = createApp({
+           setup() {
+            const inputText1 =ref('')
+            const onInput = function(event) {
+                console.log
+            }
+        
+
+            
+               return {
+  
+
+
+               }
+           }
+       })
+
+       app.mount('#app')
+   </script>
+</body>
+</html>

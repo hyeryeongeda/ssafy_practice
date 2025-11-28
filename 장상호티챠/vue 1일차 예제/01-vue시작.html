@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. npm 명령어로 설치 pip와 비슷
+  2. CDN (오늘) -->
+
+  <div id="app">
+    <!-- {{}} : 콧수염괄호 -->
+    <h1>{{ message }}</h1>
+
+    <!-- v-on:click : 클릭 이벤트 감지 -->
+    <button @click="count++">
+      Count is : {{count}}
+    </button>
+  </div>
+
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    // vue에 필요한 함수들을 '구조분해할당'으로 가져옴
+    // createApp : vue앱을 생성하는 함수
+    // ref : 반응형 변수를 생성하는 함수
+
+    // 1. 구조분해할당
+    const {createApp, ref} = Vue
+
+    // 2. createApp 함수
+    const app = createApp({
+      setup() {
+        // ref 반응형 변수
+        const message = ref('Hello vue!!')
+        const count = ref(0)
+
+        return {
+          message,
+          count
+        }
+      }
+    })
+
+
+    // 3. mount
+    app.mount('#app')
+
+
+  </script>
+
+</body>
+
+</html>

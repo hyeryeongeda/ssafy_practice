@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-클래스 바인딩</title>
+</head>
+<head>
+  <style>
+    .active {
+      color: crimson;
+    }
+
+    .text-primary {
+      color: blue;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1. 객체 형태 클래스 바인딩 -->
+    <div :class="{ active: isActive }">Text</div>
+    <!-- 2. 정적 클래스와 동적 클래스 함께 사용 -->
+    <div class="static" :class="{ active: isActive, 'text-primary': hasInfo }">Text</div>
+    <!-- 3. 클래스 객체를 통째로 바인딩 -->
+    <div class="static" :class="classObj">Text</div>
+    <!-- 4. 배열 형태로 클래스 바인딩 -->
+    <div :class="[activeClass, infoClass]">Text</div>
+    <!-- 5. 배열과 객체 형태를 혼합해서 사용 -->
+    <div :class="[{ active: isActive }, infoClass]">Text</div>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+    
+    const app = createApp({
+      setup() {
+        const isActive = ref(false)
+        const hasInfo = ref(true)
+        const classObj = ref({
+          active: isActive,
+          'text-primary': hasInfo
+        })
+        const activeClass = ref('active')
+        const infoClass = ref('text-primary')
+        return {
+          isActive,
+          hasInfo,
+          classObj,
+          activeClass,
+          infoClass
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
