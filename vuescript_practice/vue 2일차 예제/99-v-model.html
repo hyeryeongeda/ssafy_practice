@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 1. 단일 체크박스 -->
+    <!-- 데이터가 변경될 때마다 데이터가 자동으로 동기화 : 양방향 바인딩 -->
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox"> {{checked}} </label>
+    
+    <hr>
+
+    <!-- 2. 다중 체크박스 -->
+    <input type="checkbox" id="alice" value="Alice" v-model="checkedNames">
+    <label for="alice">Alice</label>
+
+    <input type="checkbox" id="bella" value="Bella" v-model="checkedNames">
+    <label for="bella">Bella</label>
+
+    <div>{{checkedNames}}</div>
+
+    <!-- 3. 단일 선택 드롭다운 -->
+
+    <hr>
+
+    <select v-model="selected">
+      <!-- disabled value : 선택불가 -->
+      <option disabled value="">select one</option>
+      <option>Alice</option>
+      <option>Bella</option>
+      <option>Cathy</option>
+    </select>
+
+    <div>{{selected}}</div>
+
+
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        // 단일 체크 박스
+        const checked = ref(false)
+    
+        // 다중 체크 박스 'Alice', 'Bella'
+        // 배열에 저장
+        const checkedNames = ref([])
+
+        // 드롭다운에서 선택된 값을 변수에 할당
+        const selected = ref('')
+
+        return {
+          checked,
+          checkedNames,
+          selected
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+</html>

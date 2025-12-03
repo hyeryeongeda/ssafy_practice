@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+</head>
+<body>
+ <div id="app">
+  <!-- :key="" -> key속성 고유 식별값
+  DB의 pk값 같은 고유값에 사용 -->
+
+  <div v-for="item in items" :key="item.id">
+    {{item.id}} - {{item.name}}
+  </div>
+
+ </div>
+
+ <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+ <script>
+
+  const { createApp, ref, computed } = Vue
+
+  const app = createApp({
+    setup() {
+
+      let id = 0
+
+      const items = ref([
+        // id가 0부터 시작? 1부터 시작?
+        // ++id -> 1, 2...
+        // id++ -> 0, 1...
+
+        { id: id++, name: 'Alice' },  
+        { id: id++, name: 'Bella' }, 
+      ])
+
+
+      return { items }
+    }
+  })
+
+
+  app.mount('#app')
+</script>
+</body>
+</html>

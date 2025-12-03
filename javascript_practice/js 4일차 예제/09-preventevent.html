@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+</head>
+
+<body>
+
+ <h1>중요한 내용</h1>
+
+
+ <form id="my-form">
+   <input type="text" name="username">
+   <button type="submit">Submit</button>
+ </form>
+
+ <script>
+  // === 예제 1: 텍스트 복사 방지 ===
+ 
+  // 1. querySelector
+  const h1Tag = document.querySelector('h1')
+
+   // 2. 콜백함수
+  const handleCopy = function (event) {
+    // preventDefault() : 이벤트의 동작을 막기
+    event.preventDefault()
+    alert('복사 할 수 없습니다.')
+  }
+
+  // 3. 이벤트 리스너(이걸 보고 무슨동작을 막는지 알수 있다.)
+  h1Tag.addEventListener('copy', handleCopy)
+ 
+   // === 예제 2: 폼 제출 방지 ===
+
+   // 1. querySelector
+   const formTag = document.querySelector('#my-form')
+
+   // 2. 콜백함수
+   const handleSubmit = function (event) {
+    event.preventDefault()
+    alert('제출 할 수 없습니다.')
+   }
+
+   // 3. 이벤트 리스너 ('submit할때 preventDefault가 동작')
+   formTag.addEventListener('submit', handleSubmit)
+
+ </script>
+</body>
+
+</html>

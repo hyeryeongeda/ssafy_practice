@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>남은 할 일</h2>
+    <!-- computed 속성 사용 -->
+    <p> {{restOfTodos}} </p>
+
+    <!-- 일반 메서드 사용 -->
+    <p> {{getRestOfTodos()}} </p>
+
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+
+    const { createApp, ref, computed } = Vue
+
+    const app = createApp({
+      setup() {
+
+        const todos = ref([
+          { text: 'Vue 실습' },
+          { text: '자격증 공부' },
+          { text: 'TIL 작성' }
+        ])
+
+        // computed와 일반 메서드 호출할때 차이
+        // 메서드 : 호출할 때마다 계산
+        // ex) 버튼 클릭하면 메서드 호출
+        // computed : 참조한 값이 변경될때마다 계산
+        // 계산결과가 캐싱, 빠르고 성능이 좋으니까 쓴다.
+
+
+        // computed 속성 정의
+        const restOfTodos = computed(() => {
+          return todos.value.length > 0 ? '아직 남아있다' : '퇴근'
+        })
+
+        // 일반 메서드 정의
+        const getRestOfTodos = function () {
+          return todos.value.length > 0 ? '아직 남아있다' : '퇴근'
+        }
+        
+        // Q) computed 속성이 빠르고 효율적이니까 메서드 호출은 쓸필요가 없을까?
+        // A) 단점 : coputed value는 읽기전용(readonly)
+
+        const a = ref(0)
+        const abc = computed(() => {
+          return a.value + 1
+        })
+
+        console.log(abc.value)
+        // console.log(abc.value++)
+
+        return {
+          todos,
+          restOfTodos,
+          getRestOfTodos
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+</html>

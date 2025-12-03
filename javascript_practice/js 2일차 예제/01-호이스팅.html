@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 호이스팅 : 끌어올려짐
+    console.log(name)
+    var name = '장상호'
+
+    // 호이스팅이 발생 하긴 하지만 TDZ(Temporal Dead Zone)
+    // 때문에 에러가 발생
+    console.log(age)
+    let age = 22
+
+    console.log(height)
+    const height = 183
+
+  </script>
+</body>
+</html>

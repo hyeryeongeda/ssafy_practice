@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- v-if와 v-else를 사용한 조건부 렌더링 -->
+    <p v-if="isSeen">true일때 보인다.</p>
+    <p v-else>false일때 보인다.</p>
+
+
+    <!-- 토글 버튼 -->
+    <!-- 버튼을 버튼 클릭할때마다 true -> false, false -> true -->
+    <button @click="isSeen = !isSeen">토글</button>
+
+
+    <!-- v-show -->
+    <div v-show="isShow">v-show</div>
+
+
+
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+
+        const isSeen = ref(true) 
+        const name = ref('Cathy')  
+        const isShow = ref(false)  
+
+        
+        return {
+          isSeen,
+          name,
+          isShow
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+</html>

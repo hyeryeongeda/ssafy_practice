@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const user = {
+      name: 'Alice',
+      'key with space': true,
+      greeting: function () {
+        return 'hello'
+      }
+    }
+
+    // 조회 두가지 방법
+    // 1. 객체.속성
+    console.log(user.name)
+
+    // 2. 만약 속성이 (문자열, 특수문자포함, 숫자로 시작)
+    // 2. 객체['속성']
+    console.log(user['key with space'])
+
+    // 추가
+    user.address = 'busan'
+    console.log(user.address)
+
+    // 수정
+    user.name = 'bogeom'
+    console.log(user.name)
+
+    // 삭제 ---> delete
+    delete user.name
+    console.log(user.name) // undefined
+
+
+    // in 연산자 (파이선의 맴버쉽 연산자와 비슷)
+    console.log('greeting' in user)
+    console.log('county' in user)
+ 
+
+    // 메서드 호출
+    console.log(user.greeting())
+
+
+
+
+  </script>
+</body>
+
+</html>

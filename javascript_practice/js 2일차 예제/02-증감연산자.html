@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //전위 연산자와 후위 연산자의 차이
+    //전위 연산자
+    let a = 3
+    const b = ++a
+    // 첫 번째 : a = a + 1
+    // 두 번째 : b = a
+
+    console.log(b)
+    // 후위 연산자
+    let x = 3
+    const y = x++
+    // 첫 번째 : y = x
+    // 두 번째 : x = x + 1
+    console.log(y)
+
+  </script>
+</body>
+</html>

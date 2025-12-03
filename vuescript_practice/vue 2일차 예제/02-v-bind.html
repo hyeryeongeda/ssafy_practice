@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div id="app">
+        <!-- 1. v-bind:src -->
+        <!-- imageSrc 이미지 url이 변경되면 src도 자동으로 업데이트 -->
+        <img :src="imageSrc">
+
+
+        <!-- 2. v-bind:href -->
+        <!-- myUrl 변수에 할당된 값이 변경되면 링크 주소도 자동으로 업데이트 -->
+        <a :href="myUrl">Go to naver</a>
+
+
+         
+        <!-- 3. 동적 속성 바인딩  -->
+        <p :[dynamicattr]="dynamicValue">Dynamic</p>
+        <!-- dynamicattr : 동적속성
+        dynamicValue : 동적값 -->
+
+        <!-- HTML 속성이름은 대소문자 구분없이 소문자로 처리된다.
+        관례적으로 소문자를 쓰자. -->
+
+        
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <script>
+        const {createApp, ref} = Vue
+
+        const app = createApp({
+            setup() {
+                const imageSrc = ref('https://picsum.photos/200')
+                const myUrl = ref('https://www.naver.com/')
+                const dynamicattr = ref('title') // 소문자로
+                const dynamicValue = ref('hello')
+
+                return {
+                    imageSrc,
+                    myUrl,
+                    dynamicattr,
+                    dynamicValue
+                }
+            }
+        })
+
+        app.mount('#app')
+
+    </script>
+</body>
+</html>

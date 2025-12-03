@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+  const name = 'customer'
+  // name이 admin일 경우 "관리자님 환영해요", name이 customer일 경우 "고객님 환영해요", 그 밖의 경우 "반갑습니다 name님" 출력
+
+  if (name === 'admin') {
+    console.log('관리자님 환영해요')
+  } else if (name === 'customer') {
+    console.log('고객님 환영해요')
+  } else { // `(백틱), $
+    console.log(`반갑습니다. ${name}님`)
+  }
+
+
+</script>
+</body>
+
+</html>

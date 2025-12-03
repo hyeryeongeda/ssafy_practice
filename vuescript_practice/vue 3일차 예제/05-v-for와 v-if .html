@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+</head>
+<body>
+ <div id="app">
+   
+  <!-- [나쁜 예시] -->
+  <!-- v-for와 v-if를 같은 요소에 쓴다 -->
+  <!-- <ul>
+    <li v-for="todo in todos" v-if="!todo.isComplete"></li>
+  </ul> -->
+
+
+  <!-- [좋은 예시 1]-->
+  <!-- 미리 필터링된(계산된) 데이터를 사용 computed 속성 사용-->
+  <ul>
+    <li v-for="todo in completeTodos" :key="todo.id">
+      {{todo.name}}
+    </li>
+  </ul>
+
+
+
+  <!-- [좋은 예시 2] -->
+  <!-- v-for와 v-if 분리해서 사용 -->
+  <ul>
+    <template v-for="todo in todos" :key="todo.id">
+      <li v-if="!todo.isComplete">
+        {{todo.name}}
+      </li>
+    </template>
+  </ul>
+
+
+
+ </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref, computed } = Vue
+
+    const app = createApp({
+      setup() {
+
+        let id = 0
+
+
+        const todos = ref([
+          { id: id++, name: '복습', isComplete: true },
+          { id: id++, name: '예습', isComplete: false },
+          { id: id++, name: '저녁식사', isComplete: true },
+          { id: id++, name: '노래방', isComplete: false }
+        ])
+
+        // 미완료된 할일만 필터링
+        // filter 매서드 : 조건에 맞는 항목만 새 배열로 반환
+        const completeTodos = computed(() => {
+          return todos.value.filter((todo) => !todo.isComplete)
+        })
+        
+
+        return {
+          todos,        
+          completeTodos 
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+</html>

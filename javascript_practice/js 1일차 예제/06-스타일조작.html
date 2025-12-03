@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <p>Lorem, ipsum dolor.</p>
+
+  <script>
+
+    // p 태그를 선택하고 pTag 변수에 할당
+    const pTag = document.querySelector('p')
+
+    // 1. 텍스트 색상을 'crimson'으로 설정
+    pTag.style.color = 'crimson'
+
+    // 2. 글자 크기를 '2rem'으로 설정
+    // 1rem == 16px
+    pTag.style.fontsize = '2rem'
+
+    // 테두리를 '1px solid black'으로 설정
+    pTag.style.border = '1px solid black'
+
+    // 전체 style 객체를 콘솔에 출력
+    console.log(pTag.style)
+
+  </script>
+</body>
+
+</html>

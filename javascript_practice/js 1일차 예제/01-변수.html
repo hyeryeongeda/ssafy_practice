@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// var, let, const 차이
+		// var : 재할당, 재선언 가능
+		// let : 재할당 가능
+		// const : 재할당, 재선언 불가능
+		// const를 주로 쓰는 이유??
+		// 재할당이 불가능하기 때문에 변수 추적에 용이
+
+		// 변수 선언 규칙 : 카멜 케이스
+		// 단어와 단어를 붙일때 첫 글자를 대문자로
+
+		let firstNumber = 10
+
+		firstNumber = 20
+
+		console.log(firstNumber)
+
+		const secondNumber = 10
+
+		// secondNumber = 20 재할당이 불가능하다.
+
+		console.log(secondNumber)
+
+		a = 10 // default는 var
+		a = 20
+
+		b = 10
+		b = 30
+
+		console.log(a)
+		console.log(b)
+
+	</script>
+</body>
+</html>

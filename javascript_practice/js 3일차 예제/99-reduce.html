@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // reduce 메서드
+    // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+    // 배열의 각 요소에 대해서 콜백 함수를 실행하고, 하나의 결과값을 반환 
+    // 배열을 원하는 특정 형태의 값으로 변환(숫자, 문자열, 객체, 배열)
+
+    /*
+      array.reduce(callBackFunction, initialValue)
+      - callBackFunction: 배열을 처리할 콜백함수
+        - accumulator(acc, 필수): 누적값이며, 이전 콜백 함수가 return한 값이 다음 순회의 accumulator로 전달 
+        - currentValue(cur, 필수): 현재 순회에서 처리중인 요소 
+        - currentIndex(idx, 선택): 현재 처리 중인 currentValue의 인덱스 
+        - array(arr, 선택): reduce를 호출한 원본 배열 
+      - initialValue: 누적을 시작할 초기값
+    */
+
+    // 예시1. 숫자 합계 구하기 
+    const numbers = [1, 2, 3, 4, 5];
+
+    // numbers.reduce(콜백함수, 초기값)
+    const sum = numbers.reduce((accumulator, current) => {
+      // reduce가 동작할때마다 현재까지의 누적값과 현재값 출력
+      console.log(`누적값(acc): ${accumulator}, 현재값(cur): ${current}`);
+      return accumulator + current;
+    }, 0); // accumulator = 0 으로 시작
+
+    console.log('최종 결과:', sum);
+
+    // 예시2. 배열 -> 객체로 변환 
+    // '이름'을 key로, '등장 횟수'를 value로 하는 객체를 만들자!
+    const names = ['Alice', 'Bob', 'Alice', 'Charlie', 'Bob', 'Alice'];
+
+    const nameCounts = names.reduce((countMap, name) => {
+    // ?? : null 이거나 undefined면 0 사용해라,  (0 + 1)
+    // 처음 등장하면 (0 + 1) = 1
+    // 두 번째 등장하면 (1 + 1) = 2
+      countMap[name] = (countMap[name] ?? 0) + 1;
+
+      return countMap;  // 수정된 객체를 다음 순회에 반환 
+    }, {});  // 초기값은 빈 객체({})
+
+    console.log(nameCounts);
+
+    // 예시3. 배열 -> 배열 (map과 filter 한 번에 reduce로 적용하기)
+    // 체이닝으로 한다면? 
+    //   - const result = nums.filter(n => n % 2 === 0).map(n => n * 2);
+    // 1. 짝수만 남겨라
+    // 2. 짝수들을 2배로 만들기
+
+
+    const nums = [1, 2, 3, 4, 5];
+    const result = nums.reduce((newArray, current) => {
+      // newArray : 지금까지 모아온 새 배열
+
+      // 짝수인지 검사 (filter 역할)
+      if (current % 2 === 0) {
+        // 2배를 해서 newArray에 추가 (map 역할)
+        newArray.push(current * 2);
+      }
+
+      // 다음 순회에 수정된 배열을 반환 
+      return newArray;
+    }, []); // 초기값은 빈 배열([])
+
+    console.log(result); // [4, 8]
+  </script>
+</body>
+
+</html>

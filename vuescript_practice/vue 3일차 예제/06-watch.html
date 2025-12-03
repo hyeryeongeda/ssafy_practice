@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+  <!-- 예시 1: 숫자 카운터 -->
+  <button @click="count++">Add 1</button>
+  <p>Count: {{ count }}</p>
+
+  <!-- 예시 2: 입력값 길이 측정 -->
+  <input v-model="message">
+  <p>Message length: {{ messageLength }}</p>
+
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    
+    // 1. computed
+    // ex) 네이버 페이 결재 내역 - 계산된 결과를 원할 때 
+
+    // 2. watch
+    // ex) 네이버 지도 길찾기 - 변경 전 값과 변경 후 값을 모두 알고 싶을때 (반응)
+
+
+    const { createApp, ref, watch } = Vue
+
+    const app = createApp({
+      setup() {
+
+        const count = ref(0)        
+        const message = ref('')    
+        const messageLength = ref(0) 
+
+
+        // 예시 1: count 값 감시
+        // newValue : 변경된 새로운 값
+        // oldValue : 변경되기 전의 값
+
+        watch(count, (newValue, oldValue) => {
+          console.log(`newValue: ${newValue}, oldValue: ${oldValue}`)
+        })
+
+
+        // 예시 2: message 값 감시
+        watch(message, (newValue, oldValue) => {
+          messageLength.value = oldValue.length
+        })
+
+        
+
+        // 컴포넌트에서 사용할 변수들 반환
+        return {
+          count,
+          message,
+          messageLength
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+</html>

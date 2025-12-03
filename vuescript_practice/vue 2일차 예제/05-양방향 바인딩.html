@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <div id="app">
+
+       <p>{{ inputText1 }}</p>
+
+       <!-- 방법 1: v-bind와 v-on을 사용 -->
+
+        <input :value="inputText1" @input="onInput">
+
+       <p>{{ inputText2 }}</p>
+
+       <!-- 방법 2: v-model을 사용 -->
+
+        <input v-model="inputText2">
+
+   </div>
+
+   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+   <script>
+       const { createApp, ref } = Vue
+
+       const app = createApp({
+           setup() {
+                const inputText1 = ref('') // {value : ''}
+                const inputText2 = ref('')
+
+                const onInput = function (event) {
+                    // event.currentTarget -> input 태그
+                    // evnet.currentTarget.value (내가 input태그에 입력한 것)
+                    inputText1.value = event.currentTarget.value
+
+                }
+            
+               return {
+                    inputText1,
+                    inputText2,
+                    onInput
+
+
+               }
+           }
+       })
+
+       app.mount('#app')
+   </script>
+</body>
+</html>

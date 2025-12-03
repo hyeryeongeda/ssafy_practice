@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const names = ['Alice', 'Bella', 'Cathy']
+
+    // 파이썬에서는
+    // for name in names:
+    //   print(name)
+
+    // 1. 일반 함수 표기
+    names.forEach(function (name) {
+      console.log(name)
+    })
+
+
+    // 2. 화살표 함수 표기
+    names.forEach(name => console.log(name))
+
+
+    // forEach의 콜백함수는 3개의 매개변수를 받을 수 있다.
+    // 1. 현재 요소의 값(value)
+    // 2. 현재 요소의 속성(인덱스)
+    // 3. 배열 전체
+
+    names.forEach(function (name, idx, arr) {
+      console.log(`${name} / ${idx} / ${arr}`)
+    })
+
+  </script>
+</body>
+
+</html>

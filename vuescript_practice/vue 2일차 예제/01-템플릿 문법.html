@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- {{ }} -->
+        <p>Message : {{ msg }}</p>
+
+        <!-- v-html -->
+        <!-- html코드를 문자열로 받아서 실제 html로 랜더링 -->
+        <div v-html="rawHtml"></div>
+
+        <!-- v-bind -->
+        <!-- html속성을 동적으로 바인딩 -->
+        <!-- <div v-bind:id="dynamicId"></div> -->
+        <div :id="dynamicId"></div>
+      
+
+        <!-- JavaScript 표현식 -->
+        <!-- 숫자에 1을 더함 -->
+        <p>{{number + 1}}</p>
+
+
+        <!-- 삼항 연산자 사용 -->
+        <!-- 조건문 -->
+        <!-- ok true면 'YES', ok가 false면 'NO' -->
+        <p>{{ok ? 'YES':'NO'}}</p>
+
+
+        <!-- 문자열을 뒤집어서 표시 -->
+        {{msg.split('').reverse().join('')}}
+
+        <!-- Directive 속성 값 -->
+
+        <!-- v-bind  -->
+        <!-- ${id} : 동적 id 생성 -->
+        <div :id="`list-${id}`"></div>
+
+        <!-- v-if : 조건부 랜더링 -->
+        <!-- seen이 true면 p태그(요소)가 보임 -->
+        <p v-if="seen">박보검</p>
+      
+
+        <!-- v-bind-->
+        <!-- url 바인딩 -->
+        <a :href="myUrl">Google</a>
+       
+
+        <!-- v-on -->
+        <!-- button 요소에 click이벤트가 발생했을때 doSomething 함수를 실행하겠다. -->
+        <button @click="doSomething">button</button>
+      
+
+        <!-- .prevent -->
+        <!-- 새로고침 x -->
+        <form @submit.prevent="onSubmit">
+            <input type="submit">
+        </form>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        // 1.
+        const {createApp, ref} = Vue
+        // 2.
+        const app = createApp({
+            setup(){
+                const msg = 'Hello'
+                const rawHtml = ref('<span style="color:red">This</span>')
+                const dynamicId = ref('my-id')
+                const number = ref(1)
+                const ok = ref(true)
+                const id = ref(100)
+                const seen = ref(true)
+                const myUrl = 'https://www.google.co.kr/'
+
+                const doSomething = function() {
+                    alert('button clicked')
+                }
+
+                const onSubmit = function() {
+                    alert('form submitted')
+                }
+
+                return {
+                    msg,
+                    rawHtml,
+                    dynamicId,
+                    number,
+                    ok,
+                    id,
+                    seen,
+                    myUrl,
+                    doSomething,
+                    onSubmit
+                }
+            }
+        })
+        // 3.
+        app.mount('#app')               
+        
+    </script>
+</body>
+</html>

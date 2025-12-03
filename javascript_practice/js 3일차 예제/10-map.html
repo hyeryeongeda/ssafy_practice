@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    const persons = [
+      { name: 'Alice', age: 20 },
+      { name: 'Bella', age: 21 }
+    ]
+
+
+    // map과 forEach와 차이점?
+    // map함수는 새로운 배열을 반환한다 ---> return 필요
+    
+    // 1.2 map로 Alice와 Bella 출력
+    const result1 = persons.map(function (person) {
+      return person.name
+    })
+
+    console.log(result1)
+
+    // 2. 화살표 함수 표기
+    // 각 문자열의 길이를 순서대로 출력
+
+    const names = ['Alice', 'Bella', 'Cathy']
+
+    // 파이썬의 map 함수와 비교
+    // result = list(map(len, names))
+    // print(result)
+
+    // const result2 = names.map((name) => {
+    //   return name.length
+    // })
+
+    const result2 = names.map(name => name.length)
+    console.log(result2)
+
+
+    // 3. map + 콜백 함수 : 각 요소를 2배로 반환
+
+    const numbers = [1, 2, 3]
+
+    const result3 = numbers.map(number => number * 2)
+    console.log(result3)
+
+    
+  </script>
+</body>
+
+</html>

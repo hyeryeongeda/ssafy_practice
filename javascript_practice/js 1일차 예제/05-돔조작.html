@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <p>DOM 요소 조작</p>
+  </div>
+
+  <script>
+    // createElement() : 새로운 요소 생성 메서드
+    // appendChild() : 새 자식 요소 추가
+    // removeChild() : 특정 자식 요소 제거
+
+    // 1. 새로운 h1 요소를 생성하고 h1Tag 변수에 할당
+    const h1Tag = document.createElement('h1')
+
+    // h1 요소의 텍스트 내용을 '제목'으로 설정
+    h1Tag.textContent = "제목"
+
+    // h1 요소를 콘솔에 출력
+    console.log(h1Tag)
+
+    // div 요소를 선택하고 divTag 변수에 할당
+    const divTag = document.querySelector('div')
+
+    // 2. h1 요소를 div 요소의 자식으로 추가
+    divTag.appendChild(h1Tag)
+
+    // div 요소를 콘솔에 출력
+    console.log(divTag)
+
+    // p 요소를 선택하고 pTag 변수에 할당
+    const pTag = document.querySelector('p')
+
+    // 3. div 요소에서 p 요소를 제거
+    divTag.removeChild(pTag)
+
+    // console.log(divTag)
+
+</script>
+</body>
+
+</html>

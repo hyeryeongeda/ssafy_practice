@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const names = ['Alice', 'Bella', 'Cathy']
+
+    // pop : 끝에 요소를 제거하고 반환
+    console.log(names.pop())
+    console.log(names)
+
+    // push : 끝에 요소를 추가
+    names.push('Bogeom')
+    console.log(names)
+
+    // shift : 첫 요소를 제거하고 반환
+    console.log(names.shift())
+    console.log(names)
+
+
+    // unshift : 맨앞에 요소를 추가
+    names.unshift('IU')
+    console.log(names)
+
+
+    // splice (시작인덱스, 삭제할 개수, 추가할 items)
+    // 요소를 삭제하고 추가
+    names.splice(1, 1, 'Pocsak')
+    console.log(names)
+
+
+  </script>
+</body>
+
+</html>

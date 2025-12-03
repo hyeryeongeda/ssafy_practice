@@ -1,0 +1,39 @@
+<!-- asynchrounous.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // 비동기 : 작업을 시작만 해두고 완료를 기다리지 않고 다음 코드를 실행
+
+    // 출력결과
+    // 작업 1 시작
+    console.log('작업 1 시작')
+
+    // 작업 완료 - 비동기 (콜백함수)
+    const asyncTask = function (callBack) {
+      setTimeout(() => {
+        callBack('작업 완료')
+      }, 5000)
+    }
+
+    asyncTask ((result) => {
+      console.log(result)
+    })
+
+    // 작업 2 시작
+    console.log('작업 2 시작')
+    
+    
+  </script>
+</body>
+
+</html>

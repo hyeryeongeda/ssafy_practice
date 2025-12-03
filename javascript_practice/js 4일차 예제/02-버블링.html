@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body * {
+      margin: 10px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <form id="form">
+    form
+    <div id="div">
+      div
+      <p id="p">p</p>
+    </div>
+  </form>
+
+  <script>
+    // 버블링이란?
+    // 물속의 거품처럼 위로 올라가는것과 비슷 (가장 안쪽 요소부터 바깥쪽 요소로 전파)
+    // 전파 순서?
+    // p ---> div ---> form
+
+    // 1. querySelector
+    const formElement = document.querySelector('#form')
+    const divElement = document.querySelector('#div')
+    const pElement = document.querySelector('#p')
+
+    // 2. 콜백함수
+    const clickHandler1 = function (event) {
+      console.log('form 클릭')
+    }
+    const clickHandler2 = function (event) {
+      console.log('div 클릭')
+    }
+    const clickHandler3 = function (event) {
+      console.log('p 클릭')
+    }
+
+    // 3. 이벤트 리스너
+    // form태그를 클릭하면 clickHandler1 콜백함수를 실행하겠다.
+    formElement.addEventListener('click', clickHandler1)
+    divElement.addEventListener('click', clickHandler2)
+    pElement.addEventListener('click', clickHandler3)
+
+
+  </script>
+</body>
+
+</html>

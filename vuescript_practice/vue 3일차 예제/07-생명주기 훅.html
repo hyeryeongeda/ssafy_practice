@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+ 
+    <button @click="count++">Add 1</button>
+
+    <!-- <p>Count: {{ count }}</p> -->
+
+    <p>{{ message }}</p>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+
+    // onMounted : 컴포넌트가 처음 화면에 그려질때 한번 실행
+    // onUpdated : 컴포넌트가 업데이트 될 때마다 실행(화면 전체가 업데이트 되면)
+    // watch : 특정 값을 지정해서 감시(count 값이 바뀔때마다 실행)
+
+
+
+    const { createApp, ref, onMounted, onUpdated, watch } = Vue
+
+    const app = createApp({
+      setup() {
+        // 반응형 변수들 선언
+        const count = ref(0)
+        const message = ref(null)
+
+        // 처음 마운트될 때
+        onMounted(() => {
+          message.value = 'mounted'
+        })
+
+        
+        // count가 변경될 때만 updated! 메시지 표시
+        // 1. watch 사용
+        watch(count, () => {
+          message.value = 'updated'
+        })
+
+
+        // 2. onUpdated 사용
+        // onUpdated(() => {
+        //   if (count.value > 0) {
+        //     message.value = 'updated'
+        //   }
+        // })
+
+
+        return {
+          count,
+          message
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+</html>

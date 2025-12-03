@@ -1,0 +1,92 @@
+<body>
+  <div id="app">
+    <!-- 1. 인라인 핸들러 -->
+    <!-- 버튼 클릭할 때마다 count 씩 증가 -->
+    <button @click="count++">1증가</button>
+    <p>Count: {{count}} </p>
+
+
+    <!-- 2. 메소드 핸들러 -->
+    <!-- 버튼을 클릭하면(클릭 이벤트가 발생하면) myFunc함수가 실행 -->
+    <button @click="myFunc">Hello</button>
+
+
+
+    <!-- 3. 인라인 핸들러에서 메소드 호출 -->
+    <!-- 버튼을 클릭했ㅇ르 때 greeting 함수를 호출하고 인자로 'hi' 또는 'bye bye' -->
+    <button @click="greeting('hi')">Say hello</button>
+    <button @click="greeting('bye bye')">Say bye</button>
+
+
+
+    <!-- 4. 이벤트 객체($event) 전달 -->
+    <button @click="warning('경고', $event)">submit</button>
+
+  
+
+    <!-- 5. 이벤트 수식어(modifiers) -->
+    <!-- .prevent 있을때와 없을때 차이 -->
+    <a href="https://www.google.com" @click.prevent="onLink">Go To google</a>
+    <!-- 
+    a태그는 a태그를 버튼처럼쓸때
+    form태그 제출하면서 새로고침 막을때 -->
+
+
+    <!-- 6. 키 수식어 -->
+    <!-- .enter : Enter키를 눌렀을때 onSubmit 함수를 호출 -->
+    <input @keyup.enter="onSubmit">
+
+    
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        const count = ref(0) // {value: 0}
+
+        const name = ref('Bogeom') // {value: 'Bogeom'}
+        
+
+        const myFunc = function (event) {
+          console.log(event)
+          // currentTarget : 이벤트가 발생한 요소
+          console.log(event.currentTarget)
+          console.log(`Hello ${name.value}!`)
+        }
+
+        const greeting = function (message) { 
+          console.log(message)
+        }
+
+        const warning = function (message, event) {
+          console.log(message)
+          console.log(event)
+        }
+
+        const onLink = function () {
+          alert('Google로 이동합니다.')
+        }
+
+        const onSubmit = function () {
+          console.log('onSubmit')
+        }
+
+        return {
+          count,
+          name,
+          myFunc,
+          greeting,
+          warning,
+          onLink,
+          onSubmit
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>

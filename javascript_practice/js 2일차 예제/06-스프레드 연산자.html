@@ -1,0 +1,43 @@
+<!-- spread-syntax.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 스프레드 연산자(함수 인자)
+    const myFunc = function (x, y, z) {
+      return x + y + z
+    }
+
+    const numbers = [1, 2, 3]
+
+    // ... : 스프레드 연산자
+    console.log(myFunc(...numbers))
+
+
+    // Rest연산자(매개변수)
+    // 여러 인자를 배열로 모을 때
+
+    // ... : Rest연산자
+    const myFunc2 = function (x, y, ...restArgs) {
+      return [x, y, restArgs]
+    }
+
+    // [3, 4, 5] 배열로 묶인다
+    console.log(myFunc2(1, 2, 3, 4, 5))
+    console.log(myFunc2(1)) // x는 1, y는 undefined, ...restArges 빈배열
+
+
+
+    
+  </script>
+</body>
+
+</html>

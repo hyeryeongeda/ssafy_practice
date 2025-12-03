@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 배열 복사 (with 전개 구문)
+    let parts = ['어깨', '무릎']
+    let lyrics = ['머리', ...parts, '발']
+
+    console.log(lyrics) // [ '머리', '어깨', '무릎', '발' ]
+    
+    // 복사본이 변경되면 원본이 변경될까?
+    // 복사본이 변경되었지만 원본은 변경되지 않았다.
+    // 원시형타입 / 참조형타입
+    // String은 원시형 타입
+    lyrics[1] = '코'
+    console.log(lyrics)
+    console.log(parts)
+
+
+    // 얕은 복사의 예시
+    // 복사본이 변경되면 원본도 같이 변경
+    // String을 ---> objects로
+    const parts2 = [{body: '어깨'}, {body: '무릎'}]
+    const lyrics2 = ['머리', ...parts2, '발']
+
+    lyrics2[1].body = '코'
+    console.log(lyrics2) // 복사본
+    console.log(parts2) // 원본
+    
+
+
+  </script>
+</body>
+
+</html>
