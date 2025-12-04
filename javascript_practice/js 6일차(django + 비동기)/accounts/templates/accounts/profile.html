@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{person.username}}님의 프로필</h1>
+
+  <hr>
+
+  <div>
+    {% comment %} span태그 쓰는 이유 : 새로고침없이 값이 변할떄 {% endcomment %}
+    팔로잉 : <span id='followings-count'>{{person.followings.all|length}} </span>/ 
+    팔로워 : <span id='followers-count'>{{person.followers.all|length}} </span>: 
+  </div>
+
+  {% if request.user != person %}
+    <div>
+      <form action="{% url "accounts:follow" person.pk%}" method="POST" id="follow-form" data-user-id="{{person.pk}}">
+        {% csrf_token %}
+        {% comment %} 팔로우 하고있으면 - 언팔로우 / 팔로우 하고있지 않으면 - 팔로우 {% endcomment %}
+        {% if request.user in person.followers.all %}
+          <input type="submit" value="언팔로우">
+        {% else %}
+          <input type="submit" value="팔로우">
+        {% endif %}
+      </form>
+    </div>
+  {% endif %}
+
+
+  <hr>
+
+  <h2>{{person.username}}가 작성한 게시글</h2>
+  {% comment %} person.article_set.all : 역참조 {% endcomment %}
+  {% for article in  person.article_set.all %}
+    <div>{{article.title}}</div>
+  {% endfor %}
+
+  <hr>
+
+  <h2>{{person.username}}가 작성한 댓글</h2>
+  {% for comment in  person.comment_set.all %}
+    <div>{{comment.content}}</div>
+  {% endfor %}
+
+  <hr>
+
+  <h2>{{person.username}}이 좋아요한 게시글</h2>
+  {% for article in  person.like_articles.all%}
+    <div>{{article.title}}</div>
+  {% endfor %}
+
+
+  <hr>
+  <a href="{% url "articles:index" %}"> Home </a>
+  <hr>
+  
+
+{% comment %} axios 쓰려면 cdn가져와야한다. {% endcomment %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+
+    //1. querySelector
+    const formTag = document.querySelector('#follow-form')
+   
+
+    //2. 콜백함수 + 3. 이벤트 리스너
+
+    formTag.addEventListener('submit', function (event){
+        // submit할때 새로고침 방지
+        event.preventDefault()
+        // currenttarget : 이벤트리스너가 부착된 요소
+        const userId = event.currentTarget.dataset.userId
+        // django 공식문서
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+
+        axios({
+            method: 'post',
+            url: `/accounts/${userId}/follow/`,
+            // django 공식문서
+            headers: {'X-CSRFToken': csrftoken},
+        }) .then ((response) => {
+            // console.log(response)
+            const isFollowed = response.data.is_followed
+            const followBtn = document.querySelector('input[type=submit]')
+            const followingsCountTag = document.querySelector('#followings-count')
+            const followersCountTag = document.querySelector('#followers-count')
+
+            if (isFollowed === true) {
+              followBtn.value = 'UnFollow'
+            } else {
+              followBtn.value = 'Follow'
+            }
+            
+            // console.log로 response 출력한 후 확인 (view에서 context로 넘겨줌)
+            followingsCountTag.textContent = response.data.followings_count
+            followersCountTag.textContent = response.data.followers_count
+
+        }) .catch((error) => {
+            console.log(error)
+        })
+
+    })
+
+
+</script>
+
+
+
+
+{% endblock content %}

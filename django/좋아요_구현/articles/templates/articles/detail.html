@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content%}
+    <h2>Detail 페이지</h2>
+    <h3>{{article.pk}}번째 게시글</h3>
+
+    <hr>
+
+    <p>제목 : {{article.title}}</p>
+    <p>내용 : {{article.content}}</p>
+    <p>작성 시각 : {{article.created_at}}</p>
+    <p>수정 시각 : {{article.updated_at}}</p>
+
+    <hr>
+    <h4>댓글 목록</h4>
+
+    <ul>
+        {% for comment in comments%}
+        <li>
+            {{comment.user}} - {{comment.content}}
+            {% comment %} 현재 로그인한 사용자와 댓글을 작성한 사용자가 같을때 {% endcomment %}
+            {% if request.user == comment.user %}
+                <form action="{% url "articles:comments_delete" article.pk comment.pk %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="삭제">
+                </form>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <hr>
+
+    <h4>댓글 생성</h4>
+    <form action="{% url "articles:comments_create" article.pk%}" method="POST">
+        {% csrf_token %}
+        {{ comment_form }}
+        <input type="submit" value="생성">
+    </form>
+
+    <hr>
+
+    <a href="{% url "articles:index" %}"> Home </a>
+
+    <hr>
+
+    <form action="{% url 'articles:delete' article.pk %}" method = 'POST'>
+        {% csrf_token %}
+        <input type="submit" value='삭제'>
+    </form>
+
+    <hr>
+
+    {% comment %} EDIT 버튼 {% endcomment %}
+    <a href="{% url "articles:update" article.pk %}">EDIT</a>
+
+
+    {% if article.image %}
+        <img src="{{article.image.url}}" alt="img">
+    {% endif %}
+
+{% endblock content%}

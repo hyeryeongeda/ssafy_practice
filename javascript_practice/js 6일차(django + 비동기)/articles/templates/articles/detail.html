@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content%}
+    <h2>Detail 페이지</h2>
+    <h3>{{article.pk}}번째 게시글</h3>
+
+    <hr>
+    <p>작성자 : {{article.user}}</p>
+    <p>제목 : {{article.title}}</p>
+    <p>내용 : {{article.content}}</p>
+    <p>작성 시각 : {{article.created_at}}</p>
+    <p>수정 시각 : {{article.updated_at}}</p>
+
+    {% comment %} 내가 쓴글 내가 볼때만 삭제버튼과 수정버튼이 보인다. {% endcomment %}
+    {% if request.user == article.user %}
+        {% comment %} 삭제버튼 {% endcomment %}
+        <form action="{% url 'articles:delete' article.pk %}" method = 'POST'>
+            {% csrf_token %}
+            <input type="submit" value='삭제'>
+        </form>
+        <hr>
+        {% comment %} EDIT 버튼 {% endcomment %}
+        <a href="{% url "articles:update" article.pk %}">EDIT</a>
+    {% endif %}
+
+    {% if article.image %}
+        <img src="{{article.image.url}}" alt="img">
+    {% endif %}
+
+    <h4>댓글 목록</h4>
+    <ul>
+        {% for comment in comments%}
+        <li>
+            {{comment.user}} - {{comment.content}}
+            {% comment %} 로그인한 사용자가 댓글작성한 사용자일 경우만 삭제버튼이 보인다 {% endcomment %}
+            {% if request.user == comment.user %}
+            <form action="{% url "articles:comments_delete" article.pk comment.pk%}" method='POST'>
+                {% csrf_token %}
+                <input type="submit" value="댓글 삭제">
+            </form>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h4>댓글 생성</h4>
+    <form action="{% url "articles:comments_create" article.pk%}" method='POST'>
+        {% csrf_token %}
+        {{comment_form}}
+        <input type="submit" value="댓글 생성">
+    </form>
+
+    <hr>
+    <a href="{% url "articles:index" %}"> Home </a>
+    <hr>
+
+{% endblock content%}

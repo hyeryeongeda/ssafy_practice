@@ -1,0 +1,42 @@
+[
+{
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$FDWrooIKl335ZnR4w8jlBz$bOc31FbsWYZBeY6SjESr4/L/NhafXuTLPLwMYISthKs=",
+        "last_login": "2025-11-11T02:58:48.036Z",
+        "is_superuser": false,
+        "username": "shjang",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-11-05T05:52:01.095Z",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$Q4y6TSjAdxmMsVA6uWB5Mq$n/QFj2yhaH/ocTv0OTZ9Zu2xgJxELgum83h/wW2mt2A=",
+        "last_login": "2025-11-11T02:59:13.347Z",
+        "is_superuser": false,
+        "username": "Karina",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-11-10T05:45:57.821Z",
+        "groups": [],
+        "user_permissions": [],
+        "followings": [
+            1
+        ]
+    }
+}
+]
